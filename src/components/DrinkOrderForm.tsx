@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { IDrink } from "../types/drinks";
 import useDrinks from "../hooks/useDrinks";
+import { clickCountState } from "../recoil/atoms/order-count";
 
 const DrinkOrderForm = () => {
-  const { drinks } = useDrinks();
-
+  const { drinks, handleItemClick, clickCountValue } = useDrinks();
 
   return (
     <div className="DrinkOrderForm">
@@ -14,7 +14,15 @@ const DrinkOrderForm = () => {
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
             {drinks.map((item: IDrink, index) => {
-              return <OrderItem key={item.id} item={item}/>;
+              return (
+                <OrderItem
+                  key={item.id}
+                  item={item}
+                  count={clickCountValue[index][`${item.id}-count`]}
+                  onIncreaseClick={() => handleItemClick(item.id, true)} // プラスボタン
+                  onDecreaseClick={() => handleItemClick(item.id, false)} // マイナスボタン
+                />
+              );
             })}
           </div>
         </div>
