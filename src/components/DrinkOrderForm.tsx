@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { IDrink } from "../types/drinks";
 import useDrinks from "../hooks/useDrinks";
 
 import { TaxPrice, TotalPriceWithTax } from "../utils/calcTaxPrice";
+import { click } from "@testing-library/user-event/dist/click";
 
 const DrinkOrderForm = () => {
   const { drinks, handleItemClick, clickCountValue, itemTotalPrices, totalClickCount } = useDrinks();
+  // console.log(clickCountValue);
 
   return (
     <div className="DrinkOrderForm">
@@ -17,7 +18,7 @@ const DrinkOrderForm = () => {
             {drinks.map((item: IDrink, index) => {
               return (
                 <OrderItem
-                  key={item.id}
+                  key={index}
                   item={item}
                   count={clickCountValue[index][`${item.id}-count`]}
                   onIncreaseClick={() => handleItemClick(item.id, true)}
