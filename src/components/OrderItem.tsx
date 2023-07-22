@@ -13,7 +13,7 @@ const OrderItem = ({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemP
       <div className="relative">
         <div
           id={`${item.id}-count`}
-          className="absolute -top-3 left-0 px-3 py-2 text-xs font-bold leading-none text-red-100 transform bg-blue-600 rounded-full"
+          className="absolute -top-3 right-0 px-3 py-2 text-xs font-bold leading-none text-red-100 transform bg-white border border-zinc-300 rounded-full text-zinc-800"
         >
           {count}
         </div>
