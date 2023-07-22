@@ -20,7 +20,7 @@ const useTodos = () => {
     const newClickCounts = [...clickCounts];
     const index = drinks.findIndex((drink: IDrink) => drink.id === id);
 
-    if (index !== -1) {
+    if (index !== -1) { // マイナス値にならないように設定
       const countKey = `${id}-count`;
       if (isIncrease) {
         newClickCounts[index] = {
