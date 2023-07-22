@@ -3,6 +3,8 @@ import { useCallback } from "react";
 
 import drinksState from "../recoil/atoms/order";
 import clickCountState from "../recoil/atoms/order-count";
+import { totalClickCountState, itemTotalPriceState } from "../recoil/selectors/order-count";
+
 
 import { IDrink } from "../types/drinks";
 
@@ -10,6 +12,9 @@ const useTodos = () => {
   const [drinks, setDrinks] = useRecoilState(drinksState);
   const clickCountValue = useRecoilValue(clickCountState);
   const [clickCounts, setClickCounts] = useRecoilState(clickCountState);
+
+  const totalClickCount = useRecoilValue(totalClickCountState);
+  const itemTotalPrices = useRecoilValue(itemTotalPriceState);
 
   const handleItemClick = (id: string, isIncrease: boolean) => {
     const newClickCounts = [...clickCounts];
@@ -36,6 +41,8 @@ const useTodos = () => {
     drinks,
     clickCountValue,
     handleItemClick,
+    totalClickCount,
+    itemTotalPrices,
   };
 };
 
