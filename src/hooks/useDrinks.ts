@@ -1,41 +1,47 @@
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useCallback } from "react";
 
-import drinksState from "../recoil/atoms/order";
-import clickCountState from "../recoil/atoms/order-count";
-import { totalClickCountState, itemTotalPriceState } from "../recoil/selectors/order-count";
-
+import drinksState from "../recoil/atoms/drink";
+import drinkCountState from "../recoil/atoms/drink-count";
+import { totalClickCountState, itemTotalPriceState } from "../recoil/selectors/drink-count";
 
 import { IDrink } from "../types/drinks";
 
-const useTodos = () => {
-  const [drinks, setDrinks] = useRecoilState(drinksState);
-  const clickCountValue = useRecoilValue(clickCountState);
-  const [clickCounts, setClickCounts] = useRecoilState(clickCountState);
+const useDrinks = () => {
+  const drinks = useRecoilValue(drinksState);
+  const clickCountValue = useRecoilValue(drinkCountState);
+  const [clickCounts, setClickCounts] = useRecoilState(drinkCountState);
 
   const totalClickCount = useRecoilValue(totalClickCountState);
   const itemTotalPrices = useRecoilValue(itemTotalPriceState);
 
-  const handleItemClick = (id: string, isIncrease: boolean) => {
-    const newClickCounts = [...clickCounts];
-    const index = drinks.findIndex((drink: IDrink) => drink.id === id);
+  // useCallbackを使って、関数をメモ化
 
-    if (index !== -1) { // マイナス値にならないように設定
-      const countKey = `${id}-count`;
-      if (isIncrease) {
-        newClickCounts[index] = {
-          ...newClickCounts[index],
-          [countKey]: newClickCounts[index][countKey] + 1,
-        };
-      } else {
-        newClickCounts[index] = {
-          ...newClickCounts[index],
-          [countKey]: Math.max(0, newClickCounts[index][countKey] - 1),
-        };
+  const handleItemClick = useCallback(
+    (id: string, isIncrease: boolean) => {
+      const newClickCounts = [...clickCounts];
+      const index = drinks.findIndex((drink: IDrink) => drink.id === id);
+
+      if (index !== -1) {
+        // マイナス値にならないように設定
+        const countKey = `${id}-count`;
+        if (isIncrease) {
+          newClickCounts[index] = {
+            ...newClickCounts[index],
+            [countKey]: newClickCounts[index][countKey] + 1,
+          };
+        } else {
+          newClickCounts[index] = {
+            ...newClickCounts[index],
+            [countKey]: Math.max(0, newClickCounts[index][countKey] - 1),
+          };
+        }
+
+        setClickCounts(newClickCounts);
       }
-      setClickCounts(newClickCounts);
-    }
-  };
+    },
+    [drinks, clickCounts, setClickCounts]
+  );
 
   return {
     drinks,
@@ -46,4 +52,4 @@ const useTodos = () => {
   };
 };
 
-export default useTodos;
+export default useDrinks;
