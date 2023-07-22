@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { IDrink } from "../types/drinks";
 import useDrinks from "../hooks/useDrinks";
-import { clickCountState } from "../recoil/atoms/order-count";
+
+import { TaxPrice, TotalPriceWithTax } from "../utils/calcTaxPrice";
 
 const DrinkOrderForm = () => {
-  const { drinks, handleItemClick, clickCountValue } = useDrinks();
+  const { drinks, handleItemClick, clickCountValue, itemTotalPrices, totalClickCount } = useDrinks();
 
   return (
     <div className="DrinkOrderForm">
@@ -19,11 +20,36 @@ const DrinkOrderForm = () => {
                   key={item.id}
                   item={item}
                   count={clickCountValue[index][`${item.id}-count`]}
-                  onIncreaseClick={() => handleItemClick(item.id, true)} // プラスボタン
-                  onDecreaseClick={() => handleItemClick(item.id, false)} // マイナスボタン
+                  onIncreaseClick={() => handleItemClick(item.id, true)}
+                  onDecreaseClick={() => handleItemClick(item.id, false)}
                 />
               );
             })}
+          </div>
+          <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+            <div className="mb-2 flex justify-between">
+              <p className="text-gray-700">合計注文数</p>
+              <span id="count" className="text-gray-700">
+                {totalClickCount}点
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-gray-700">軽減税率 8%</p>
+              <p className="text-gray-700">¥{TaxPrice(itemTotalPrices)}</p>
+            </div>
+            <hr className="my-4" />
+            <div className="flex justify-between">
+              <p className="text-lg font-bold">Total</p>
+              <div className="">
+                <span id="price" className="mb-1 text-lg font-bold text-right">
+                  ¥{itemTotalPrices}
+                </span>
+                <p className="text-sm text-gray-700">税込 ¥{TotalPriceWithTax(itemTotalPrices)}</p>
+              </div>
+            </div>
+            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+              購入する
+            </button>
           </div>
         </div>
       </div>
