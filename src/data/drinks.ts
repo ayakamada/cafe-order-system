@@ -5,7 +5,7 @@ const Drinks: IDrink[] = [
     id: "coffee",
     name: "コーヒー",
     price: 480,
-    img: "https://source.unsplash.com/4YYnnNvimGU",
+    img: "https://source.unsplash.com/nzyzAUsbV0M",
   },
   {
     id: "tea",
