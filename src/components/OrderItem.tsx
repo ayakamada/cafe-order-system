@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IDrink } from "../types/drinks";
 
 interface OrderItemProps {
@@ -10,16 +10,21 @@ interface OrderItemProps {
 
 const OrderItem = React.memo(({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemProps) => {
   const [animate, setAnimate] = useState(false);
+  const [prevCount, setPrevCount] = useState(0);
 
   /*
   クリックアニメーション用のclass toggle関数
   */
-  const classToggle = () => {
-    setAnimate(true);
-    setTimeout(() => {
-      setAnimate(false);
-    }, 500);
-  };
+  useEffect(() => {
+    if (count !== prevCount) {
+      // クリック回数が変わったときだけアニメーションを実行
+      setAnimate(true);
+      setTimeout(() => {
+        setAnimate(false);
+      }, 500);
+      setPrevCount(count); // 現在のクリック回数をprevCountに更新
+    }
+  }, [count, prevCount]);
 
   return (
     <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
@@ -46,7 +51,6 @@ const OrderItem = React.memo(({ item, count, onIncreaseClick, onDecreaseClick }:
               className={`w-20 h-1/2 block cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
               onClick={() => {
                 onDecreaseClick();
-                classToggle();
               }}
             >
               <span>-</span>
@@ -56,7 +60,6 @@ const OrderItem = React.memo(({ item, count, onIncreaseClick, onDecreaseClick }:
               className={`w-20 h-1/2 block cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
               onClick={() => {
                 onIncreaseClick();
-                classToggle();
               }}
             >
               <span>+</span>
