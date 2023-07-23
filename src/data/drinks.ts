@@ -5,31 +5,31 @@ const Drinks: IDrink[] = [
     id: "coffee",
     name: "コーヒー",
     price: 480,
-    img: "https://dummyimage.com/600x400/000/fff",
+    img: "https://source.unsplash.com/4YYnnNvimGU",
   },
   {
     id: "tea",
     name: "紅茶",
     price: 280,
-    img: "https://dummyimage.com/600x400/000/fff",
+    img: "https://source.unsplash.com/oBoELXgJR1w",
   },
   {
     id: "milk",
     name: "ミルク",
     price: 180,
-    img: "https://dummyimage.com/600x400/000/fff",
+    img: "https://source.unsplash.com/5SN5N5-JM3c",
   },
   {
     id: "coke",
     name: "コーラ",
     price: 190,
-    img: "https://dummyimage.com/600x400/000/fff",
+    img: "https://source.unsplash.com/D8XcEUt3Tmc",
   },
   {
     id: "beer",
     name: "ビール",
     price: 580,
-    img: "https://dummyimage.com/600x400/000/fff",
+    img: "https://source.unsplash.com/K8nr6rNDtUE",
   },
 ];
 
