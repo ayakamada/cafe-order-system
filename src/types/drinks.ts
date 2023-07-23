@@ -1,6 +1,7 @@
 // Drink型を定義
 export interface IDrink {
-  id: string;
+  id: number;
+  code: string;
   name: string;
   price: number;
   img: string;
