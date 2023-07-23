@@ -1,11 +1,9 @@
 import { TaxPrice, TotalPriceWithTax } from "../utils/calcTaxPrice";
+import useDrinks from "../hooks/useDrinks";
 
-interface PricesBoxProps {
-  itemTotalPrices: number;
-  totalClickCount: number;
-}
+const PricesBox = () => {
+  const { itemTotalPrices, totalClickCount } = useDrinks();
 
-const PricesBox = ({ itemTotalPrices, totalClickCount }: PricesBoxProps) => {
   return (
     <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
       <div className="mb-2 flex justify-between">
