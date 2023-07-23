@@ -6,7 +6,7 @@ import DrinkOrderForm from "./components/DrinkOrderForm";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-gray-100 pt-20 min-h-screen">
       <header></header>
       <main>
         <DrinkOrderForm />
