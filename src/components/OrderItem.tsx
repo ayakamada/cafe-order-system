@@ -8,7 +8,7 @@ interface OrderItemProps {
   onDecreaseClick: () => void; // マイナスボタン用
 }
 
-const OrderItem = ({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemProps) => {
+const OrderItem = memo(({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemProps) => {
   const [animate, setAnimate] = useState(false);
   const [prevCount, setPrevCount] = useState(0);
 
@@ -49,18 +49,14 @@ const OrderItem = ({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemP
             <button
               id={`${item.code}-up`}
               className={`w-20 h-1/2 block cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
-              onClick={() => {
-                onDecreaseClick();
-              }}
+              onClick={onDecreaseClick}
             >
               <span>-</span>
             </button>
             <button
               id={`${item.code}-down`}
               className={`w-20 h-1/2 block cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
-              onClick={() => {
-                onIncreaseClick();
-              }}
+              onClick={onIncreaseClick}
             >
               <span>+</span>
             </button>
@@ -69,6 +65,6 @@ const OrderItem = ({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemP
       </div>
     </div>
   );
-};
+});
 
 export default OrderItem;

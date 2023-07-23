@@ -13,15 +13,18 @@ const useDrinks = () => {
   const itemTotalPrices = useRecoilValue(itemTotalPriceState);
 
   // useCallbackを使うことで、関数の再生成を防ぐ
-  const handleItemClick = (id: number, isIncrease: boolean) => {
-    if (id !== -1) {
-      // マイナス値にならないように設定
-      setDrinkCounts((prevCounts) => ({
-        ...prevCounts,
-        [id]: isIncrease ? prevCounts[id] + 1 : Math.max(0, prevCounts[id] - 1),
-      }));
-    }
-  };
+  const handleItemClick = useCallback(
+    (id: number, isIncrease: boolean) => {
+      if (id !== -1) {
+        // マイナス値にならないように設定
+        setDrinkCounts((prevCounts) => ({
+          ...prevCounts,
+          [id]: isIncrease ? prevCounts[id] + 1 : Math.max(0, prevCounts[id] - 1),
+        }));
+      }
+    },
+    [setDrinkCounts]
+  );
 
   return {
     drinks,
