@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { IDrink } from "../types/drinks";
 
 interface OrderItemProps {
@@ -8,7 +8,7 @@ interface OrderItemProps {
   onDecreaseClick: () => void; // マイナスボタン用
 }
 
-const OrderItem = React.memo(({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemProps) => {
+const OrderItem = ({ item, count, onIncreaseClick, onDecreaseClick }: OrderItemProps) => {
   const [animate, setAnimate] = useState(false);
   const [prevCount, setPrevCount] = useState(0);
 
@@ -69,5 +69,6 @@ const OrderItem = React.memo(({ item, count, onIncreaseClick, onDecreaseClick }:
       </div>
     </div>
   );
-});
+};
+
 export default OrderItem;
