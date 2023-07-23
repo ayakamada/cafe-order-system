@@ -7,8 +7,6 @@ import useDrinks from "../hooks/useDrinks";
 import { click } from "@testing-library/user-event/dist/click";
 
 const DrinkOrderForm = () => {
-  const { drinks, handleItemClick, clickCountValue, itemTotalPrices, totalClickCount } = useDrinks();
-  // console.log(clickCountValue);
 
   return (
     <div className="DrinkOrderForm">
@@ -28,7 +26,7 @@ const DrinkOrderForm = () => {
               );
             })}
           </div>
-          <PricesBox itemTotalPrices={itemTotalPrices} totalClickCount={totalClickCount} />
+          <PricesBox />
         </div>
       </div>
     </div>
