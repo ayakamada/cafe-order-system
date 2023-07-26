@@ -7,28 +7,27 @@ import useDrinks from "../hooks/useDrinks";
 import { click } from "@testing-library/user-event/dist/click";
 
 const DrinkOrderForm = () => {
-  const { drinks, handleItemClick, clickCountValue, itemTotalPrices, totalClickCount } = useDrinks();
-  // console.log(clickCountValue);
+  const { drinks, handleItemClick, drinkCounts  } = useDrinks();
 
   return (
     <div className="DrinkOrderForm">
       <div className="">
-        <h1 className="mb-10 text-center text-2xl font-bold">Drink Order Form</h1>
+        <h1 className="mb-10 text-center text-2xl font-bold">Track Cafe Drink Order</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
-            {drinks.map((item: IDrink, index) => {
+            {drinks.map((item: IDrink) => {
               return (
                 <OrderItem
-                  key={index}
+                  key={item.id}
                   item={item}
-                  count={clickCountValue[index][`${item.id}-count`]}
+                  count={drinkCounts[item.id]}
                   onIncreaseClick={() => handleItemClick(item.id, true)}
                   onDecreaseClick={() => handleItemClick(item.id, false)}
                 />
               );
             })}
           </div>
-          <PricesBox itemTotalPrices={itemTotalPrices} totalClickCount={totalClickCount} />
+          <PricesBox />
         </div>
       </div>
     </div>

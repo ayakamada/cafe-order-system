@@ -1,51 +1,34 @@
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import { useCallback } from "react";
 
 import drinksState from "../recoil/atoms/drink";
 import drinkCountState from "../recoil/atoms/drink-count";
 import { totalClickCountState, itemTotalPriceState } from "../recoil/selectors/drink-count";
 
-import { IDrink } from "../types/drinks";
-
 const useDrinks = () => {
   const drinks = useRecoilValue(drinksState);
-  const clickCountValue = useRecoilValue(drinkCountState);
-  const [clickCounts, setClickCounts] = useRecoilState(drinkCountState);
+  const [drinkCounts, setDrinkCounts] = useRecoilState(drinkCountState);
 
   const totalClickCount = useRecoilValue(totalClickCountState);
   const itemTotalPrices = useRecoilValue(itemTotalPriceState);
 
-  // useCallbackを使って、関数をメモ化
-
+  // useCallbackを使うことで、関数の再生成を防ぐ
   const handleItemClick = useCallback(
-    (id: string, isIncrease: boolean) => {
-      const newClickCounts = [...clickCounts];
-      const index = drinks.findIndex((drink: IDrink) => drink.id === id);
-
-      if (index !== -1) {
+    (id: number, isIncrease: boolean) => {
+      if (id !== -1) {
         // マイナス値にならないように設定
-        const countKey = `${id}-count`;
-        if (isIncrease) {
-          newClickCounts[index] = {
-            ...newClickCounts[index],
-            [countKey]: newClickCounts[index][countKey] + 1,
-          };
-        } else {
-          newClickCounts[index] = {
-            ...newClickCounts[index],
-            [countKey]: Math.max(0, newClickCounts[index][countKey] - 1),
-          };
-        }
-
-        setClickCounts(newClickCounts);
+        setDrinkCounts((prevCounts) => ({
+          ...prevCounts,
+          [id]: isIncrease ? prevCounts[id] + 1 : Math.max(0, prevCounts[id] - 1),
+        }));
       }
     },
-    [drinks, clickCounts, setClickCounts]
+    [setDrinkCounts]
   );
 
   return {
     drinks,
-    clickCountValue,
+    drinkCounts,
     handleItemClick,
     totalClickCount,
     itemTotalPrices,
