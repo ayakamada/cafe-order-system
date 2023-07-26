@@ -11,12 +11,20 @@ function App() {
         <DrinkOrderForm />
       </main>
       <footer className="py-20 ">
-        <span className="text-zinc-700 text-xs">
-          Photos From{" "}
-          <a className="text-sky-700" href="https://unsplash.com/">
-            unsplash.com
-          </a>
-        </span>
+        <div className="text-center">
+          <span className="block text-zinc-700 text-xs mb-2">
+            Photos From{" "}
+            <a className="text-sky-700" href="https://unsplash.com/">
+              unsplash.com
+            </a>
+          </span>
+          <span className="block text-zinc-700 text-xs">
+            Created by{" "}
+            <a className="text-sky-700" href="https://github.com/ayakamada/cafe-order-system">
+              ayakamada
+            </a>
+          </span>
+        </div>
       </footer>
     </div>
   );
