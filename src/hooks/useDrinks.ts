@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { useCallback } from "react";
 
 import drinksState from "../recoil/atoms/drink";
