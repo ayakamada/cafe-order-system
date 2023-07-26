@@ -1,5 +1,6 @@
 import { TaxPrice, TotalPriceWithTax } from "../utils/calcTaxPrice";
 import useDrinks from "../hooks/useDrinks";
+import ClickedItemList from "./ClickedItemList";
 
 const PricesBox = () => {
   const { itemTotalPrices, totalClickCount } = useDrinks();
@@ -13,10 +14,11 @@ const PricesBox = () => {
         </span>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-2">
         <p className="text-gray-700">小計</p>
         <p className="text-gray-700"> ¥{itemTotalPrices.toLocaleString()}</p>
       </div>
+      <ClickedItemList />
       <hr className="my-4" />
       <div className="flex justify-between">
         <p className="text-lg font-bold">合計</p>
