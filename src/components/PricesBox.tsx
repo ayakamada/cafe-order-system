@@ -21,9 +21,9 @@ const PricesBox = () => {
       <ClickedItemList />
       <hr className="my-4" />
       <div className="flex justify-between">
-        <p className="text-lg font-bold">合計</p>
+        <p className="text-2xl font-bold">合計</p>
         <div className="">
-          <span id="price" className="block mb-1 text-lg font-bold text-right">
+          <span id="price" className="block mb-1 text-2xl font-bold text-right">
             ¥{TotalPriceWithTax(itemTotalPrices).toLocaleString()}
           </span>
           <p className="text-sm text-gray-700 text-right">税8% ¥{TaxPrice(itemTotalPrices)}</p>
