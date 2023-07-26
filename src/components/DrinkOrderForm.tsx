@@ -7,7 +7,7 @@ import useDrinks from "../hooks/useDrinks";
 import { click } from "@testing-library/user-event/dist/click";
 
 const DrinkOrderForm = () => {
-  const { drinks, handleItemClick, drinkCounts  } = useDrinks();
+  const { drinks, handleItemClick, drinkCounts } = useDrinks();
 
   return (
     <div className="DrinkOrderForm">
