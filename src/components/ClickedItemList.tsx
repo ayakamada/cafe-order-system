@@ -53,7 +53,7 @@ const ClickedItemList = () => {
               aria-labelledby="hs-bordered-heading-two"
             >
               <div className="my-2">
-                <div className="text-gray-800 p-2 bg-zinc-50 ">
+                <div className="text-gray-700 p-2 text-sm bg-zinc-50 ">
                   {clickedItems.map((item, index) => {
                     return (
                       <div key={index}>
