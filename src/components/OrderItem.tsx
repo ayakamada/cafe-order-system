@@ -48,14 +48,14 @@ const OrderItem = memo(({ item, count, onIncreaseClick, onDecreaseClick }: Order
           <div id={item.code} className="flex border-gray-100 h-full">
             <button
               id={`${item.code}-up`}
-              className={`w-20 h-1/2 block cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
+              className={`w-20 h-1/2 block cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50 text-2xl`}
               onClick={onDecreaseClick}
             >
               <span>-</span>
             </button>
             <button
               id={`${item.code}-down`}
-              className={`w-20 h-1/2 block cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50 text-base`}
+              className={`w-20 h-1/2 block cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50 text-2xl`}
               onClick={onIncreaseClick}
             >
               <span>+</span>
