@@ -37,7 +37,7 @@ const OrderItem = memo(({ item, count, onIncreaseClick, onDecreaseClick }: Order
         >
           {count}
         </div>
-        <img src={item.img} alt="product" className="w-full rounded-lg sm:w-40 object-cover sm:h-28 h-48" />
+        <img src={item.img} alt={`${item.name}`} className="w-full rounded-lg sm:w-40 object-cover sm:h-28 h-48" />
       </div>
       <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
         <div className="mt-5 sm:mt-0">
